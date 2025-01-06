@@ -2,17 +2,17 @@
 #include <printf.h>
 #include <RF24.h>
 #include <RF24_config.h>
-#include <SPI.h>      //SPI library for communicate with the nRF24L01+
-#include "RF24.h"     //The main library of the nRF24L01+
+#include <SPI.h>      
+#include "RF24.h"  
 
 
 const int enbA = 3;
 const int enbB = 5;
 
-const int IN1 = 2;    //Right Motor (-)
-const int IN2 = 4;    //Right Motor (+)
-const int IN3 = 7;    //Left Motor (+)
-const int IN4 = 6;    //Right Motor (-)
+const int IN1 = 2;   
+const int IN2 = 4;    
+const int IN3 = 7;    
+const int IN4 = 6;   
 
 int RightSpd = 255;
 int LeftSpd = 255;
@@ -67,8 +67,8 @@ void loop(){
     digitalWrite(trigPin, LOW);
     duration = pulseIn(echoPin, HIGH);
     distanceCm = duration * 0.034 / 2;
-    Serial.print(" Distance: "); // Prints string "Distance" on the LCD
-    Serial.print(distanceCm); // Prints the distance value from the sensor
+    Serial.print(" Distance: "); 
+    Serial.print(distanceCm); 
     Serial.println(" cm");
 
     
