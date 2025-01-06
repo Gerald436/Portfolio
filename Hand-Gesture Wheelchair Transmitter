@@ -1,0 +1,52 @@
+#include <SPI.h>        //SPI library for communicate with the nRF24L01+
+#include "RF24.h"       //The main library of the nRF24L01+
+#include "Wire.h"       //For communicate
+#include "Arduino_BMI270_BMM150.h"
+
+
+float ax, ay, az;
+float gx, gy, gz;
+float data[2];
+
+RF24 radio(9, 8);
+                                    
+const uint64_t pipe = 0xE8E8F0F0E1LL;
+
+void setup(void){
+  while (!Serial);
+  Serial.println("Started");
+
+  if (!IMU.begin()) {
+    Serial.println("Failed to initialize IMU!");
+    while (1);
+  }
+
+
+  Serial.begin(9600);
+  Wire.begin();
+  radio.begin();                 //Start the nRF24 communicate     
+  radio.openWritingPipe(pipe);   //Sets the address of the receiver to which the program will send data.
+}
+void loop(void) {
+  float accX, accY, accZ; // Declare here
+
+  if (IMU.accelerationAvailable()) {
+    IMU.readAcceleration(accX, accY, accZ);
+
+    // Serial.print("X: ");
+    // Serial.print(accX);
+    // Serial.print("  Y: ");
+    // Serial.print(accY);
+    // Serial.print("  Z: ");
+    // Serial.println(accZ);
+
+    Serial.print("X:");
+    Serial.print(data[0]);
+    Serial.print("  Y: ");
+    Serial.println(data[1]);
+  }
+
+  data[0] = accX;
+  data[1] = accY;
+  radio.write(data, sizeof(data));
+}
