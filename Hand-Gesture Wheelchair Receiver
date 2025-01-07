@@ -33,7 +33,6 @@ int distanceCm;
 int distanceInch;
 
 void setup(){
-  //Define the motor pins as OUTPUT
   pinMode(enbA, OUTPUT);
   pinMode(enbB, OUTPUT);
   pinMode(IN1, OUTPUT);
