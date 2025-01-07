@@ -33,13 +33,6 @@ void loop(void) {
   if (IMU.accelerationAvailable()) {
     IMU.readAcceleration(accX, accY, accZ);
 
-    // Serial.print("X: ");
-    // Serial.print(accX);
-    // Serial.print("  Y: ");
-    // Serial.print(accY);
-    // Serial.print("  Z: ");
-    // Serial.println(accZ);
-
     Serial.print("X:");
     Serial.print(data[0]);
     Serial.print("  Y: ");
